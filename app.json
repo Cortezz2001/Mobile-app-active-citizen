@@ -13,13 +13,15 @@
             "backgroundColor": "#ffffff"
         },
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "package": "com.cortezz2001.active-citizen"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/test-logo.png",
                 "backgroundColor": "#ffffff"
-            }
+            },
+            "package": "com.cortezz2001.active-citizen"
         },
         "web": {
             "bundler": "metro",

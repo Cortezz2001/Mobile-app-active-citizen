@@ -14,36 +14,37 @@ import { Link, router } from "expo-router";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 import FormField from "@/components/FormField";
+import GoogleButton from "@/components/GoogleButton";
+import { useAuthRequest, makeRedirectUri } from 'expo-auth-session';
 
 export default function SignIn() {
     // const { setUser, setIsLogged } = useGlobalContext();
-    // const [isSubmitting, setSubmitting] = useState(false);
-    // const [form, setForm] = useState({
-    //     email: "",
-    //     password: "",
-    // });
+    const [isSubmitting, setSubmitting] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    // const submit = async () => {
-    //     if (form.email === "" || form.password === "") {
-    //         Alert.alert("Error", "Please fill in all fields");
-    //     }
+    const handleSignIn = async () => {
+        if (email === "" || password === "") {
+            Alert.alert("Error", "Please fill in all fields");
+            return;
+        }
 
-    //     setSubmitting(true);
+        setSubmitting(true);
 
-    //     try {
-    //         await signIn(form.email, form.password);
-    //         const result = await getCurrentUser();
-    //         setUser(result);
-    //         setIsLogged(true);
+        try {
+            // await signIn(form.email, form.password);
+            // const result = await getCurrentUser();
+            // setUser(result);
+            // setIsLogged(true);
 
-    //         Alert.alert("Success", "User signed in successfully");
-    //         router.replace("/home");
-    //     } catch (error) {
-    //         Alert.alert("Error", error.message);
-    //     } finally {
-    //         setSubmitting(false);
-    //     }
-    // };
+            Alert.alert("Success", "User signed in successfully");
+            router.replace("/home");
+        } catch (error) {
+            Alert.alert("Error", error.message);
+        } finally {
+            setSubmitting(false);
+        }
+    };
     return (
         <SafeAreaView className="flex-1 bg-white justify-center px-6">
             <StatusBar style="dark" />
@@ -62,14 +63,14 @@ export default function SignIn() {
                 <FormField
                     title="Email"
                     placeholder="Email Address"
-                    handleChangeText={(text) => console.log("Email:", text)}
+                    handleChangeText={setEmail}
                 />
 
                 {/* Поле для пароля */}
                 <FormField
                     title="Password"
                     placeholder="Password"
-                    handleChangeText={(text) => console.log("Password:", text)}
+                    handleChangeText={setPassword}
                 />
 
                 {/* Ссылка для восстановления пароля */}
@@ -82,7 +83,7 @@ export default function SignIn() {
                 {/* Кнопка Login */}
                 <CustomButton
                     title="Login"
-                    handlePress={() => router.push("/sign-up")}
+                    handlePress={handleSignIn}
                     containerStyles="rounded-lg py-3 mb-6"
                 />
 
@@ -115,19 +116,8 @@ export default function SignIn() {
                     </Text>
                     <View className="flex-1 h-[1px] bg-gray-300" />
                 </View>
+                <GoogleButton/>
 
-                <TouchableOpacity
-                    className="w-full mt-3 bg-white border border-gray-300 py-3 rounded-lg flex-row justify-center items-center"
-                    onPress={() => console.log("Continue with Google")}
-                >
-                    <Image
-                        source={require("@/assets/icons/google.png")}
-                        className="w-5 h-5 mr-2"
-                    />
-                    <Text className="text-black font-mmedium text-lg">
-                        Google
-                    </Text>
-                </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     );
