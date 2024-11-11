@@ -15,16 +15,18 @@ import { useState } from "react";
 import { ScrollView } from "react-native";
 import FormField from "@/components/FormField";
 import GoogleButton from "@/components/GoogleButton";
-import { useAuthRequest, makeRedirectUri } from 'expo-auth-session';
-
+import { useGlobalContext } from "@/lib/context";
+import { getCurrentUser, signIn } from "@/lib/appwrite";
 export default function SignIn() {
-    // const { setUser, setIsLogged } = useGlobalContext();
+    const { setUser, setIsLogged } = useGlobalContext();
     const [isSubmitting, setSubmitting] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [form, setForm] = useState({
+        email: "",
+        password: "",
+    });
 
     const handleSignIn = async () => {
-        if (email === "" || password === "") {
+        if (form.email === "" || form.password === "") {
             Alert.alert("Error", "Please fill in all fields");
             return;
         }
@@ -32,10 +34,10 @@ export default function SignIn() {
         setSubmitting(true);
 
         try {
-            // await signIn(form.email, form.password);
-            // const result = await getCurrentUser();
-            // setUser(result);
-            // setIsLogged(true);
+            await signIn(form.email, form.password);
+            const result = await getCurrentUser();
+            setUser(result);
+            setIsLogged(true);
 
             Alert.alert("Success", "User signed in successfully");
             router.replace("/home");
@@ -62,15 +64,18 @@ export default function SignIn() {
                 {/* Поле для Email */}
                 <FormField
                     title="Email"
+                    value={form.email}
+                    handleChangeText={(e) => setForm({ ...form, email: e })}
                     placeholder="Email Address"
-                    handleChangeText={setEmail}
+                    keyboardType="email-address"
                 />
 
                 {/* Поле для пароля */}
                 <FormField
                     title="Password"
+                    value={form.password}
+                    handleChangeText={(e) => setForm({ ...form, password: e })}
                     placeholder="Password"
-                    handleChangeText={setPassword}
                 />
 
                 {/* Ссылка для восстановления пароля */}
@@ -85,6 +90,7 @@ export default function SignIn() {
                     title="Login"
                     handlePress={handleSignIn}
                     containerStyles="rounded-lg py-3 mb-6"
+                    isLoading={isSubmitting}
                 />
 
                 {/* <TouchableOpacity className="bg-blue-600 rounded-lg py-3 mb-6">
@@ -103,7 +109,7 @@ export default function SignIn() {
                             href="/sign-up"
                             className="text-blue-500 font-mmedium"
                         >
-                            Register now
+                            Sign up
                         </Link>
                     </TouchableOpacity>
                 </View>
@@ -116,8 +122,7 @@ export default function SignIn() {
                     </Text>
                     <View className="flex-1 h-[1px] bg-gray-300" />
                 </View>
-                <GoogleButton/>
-
+                <GoogleButton />
             </ScrollView>
         </SafeAreaView>
     );

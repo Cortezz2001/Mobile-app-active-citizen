@@ -1,36 +1,39 @@
 {
-    "expo": {
-        "name": "Mobile-app",
-        "slug": "Mobile-app",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/images/test-logo.png",
-        "scheme": "active-citizen",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./assets/images/test-logo.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "ios": {
-            "supportsTablet": true,
-            "package": "com.cortezz2001.active-citizen"
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/images/test-logo.png",
-                "backgroundColor": "#ffffff"
-            },
-            "package": "com.cortezz2001.active-citizen"
-        },
-        "web": {
-            "bundler": "metro",
-            "output": "static",
-            "favicon": "./assets/images/test-logo.png"
-        },
-        "plugins": ["expo-router"],
-        "experiments": {
-            "typedRoutes": true
-        }
+  "expo": {
+    "name": "Mobile-app",
+    "slug": "Mobile-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/test-logo.png",
+    "scheme": "active-citizen",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/test-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "package": "com.cortezz2001.active-citizen"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/test-logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.cortezz2001.active-citizen"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/test-logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
     }
+  }
 }

@@ -1,7 +1,9 @@
 import { SplashScreen, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-
+import GlobalProvider from "@/lib/context";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../lib/i18n";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -33,10 +35,23 @@ export default function RootLayout() {
         return null;
     }
     return (
-        <Stack screenOptions={{ animation: "slide_from_right" }}>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <I18nextProvider i18n={i18n}>
+            <GlobalProvider>
+                <Stack screenOptions={{ animation: "slide_from_right" }}>
+                    <Stack.Screen
+                        name="index"
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="(auth)"
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="(tabs)"
+                        options={{ headerShown: false }}
+                    />
+                </Stack>
+            </GlobalProvider>
+        </I18nextProvider>
     );
 }

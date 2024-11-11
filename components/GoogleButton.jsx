@@ -1,6 +1,6 @@
-import React from 'react';
-import { TouchableOpacity, Image, Text } from 'react-native';
-import { loginWithGoogle } from '@/lib/AuthService';
+import React from "react";
+import { TouchableOpacity, Image, Text } from "react-native";
+import { loginWithGoogle } from "@/lib/appwrite";
 
 const GoogleButton = () => {
     return (
@@ -12,9 +12,7 @@ const GoogleButton = () => {
                 source={require("@/assets/icons/google.png")}
                 className="w-5 h-5 mr-2"
             />
-            <Text className="text-black font-mmedium text-lg">
-                Google
-            </Text>
+            <Text className="text-black font-mmedium text-lg">Google</Text>
         </TouchableOpacity>
     );
 };
