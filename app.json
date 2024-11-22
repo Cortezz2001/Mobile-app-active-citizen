@@ -21,7 +21,7 @@
         "foregroundImage": "./assets/images/test-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.cortezz2001.active-citizen"
+      "package": "com.cortezz2001.activecitizen"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +34,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9adf51ef-5674-4013-8bc8-91d82f4841d1"
+      }
     }
   }
 }
